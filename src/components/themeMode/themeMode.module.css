@@ -1,0 +1,31 @@
+.themeSection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    
+    
+}
+
+.themeSection label{
+    background-color: var(--background-color);
+    color: var(--content-color);
+    width: 40%;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 999px;
+}
+
+
+body:has(input[id='lightMode']:checked) .themeSection label[for="lightMode"],
+body:has(input[id='darkMode']:checked) .themeSection label[for="darkMode"],
+body:has(input[id='skoobTheme']:checked) .themeSection label[for="skoobTheme"],
+body:has(input[id='skeeloTheme']:checked) .themeSection label[for="skeeloTheme"] {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}

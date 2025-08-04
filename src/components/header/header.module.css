@@ -1,0 +1,50 @@
+
+
+.header{
+    display: flex;
+    align-items: center;
+
+    top: 0;
+    width: 100%;
+    height: 70px;
+    border-radius: 0 0 5px 5px;
+    background-color: var(--primary-color);
+    color: rgb(255, 255, 255);
+    z-index: 1000;
+}
+
+.header span{
+    height: fit-content;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.pfPic{
+    background-color: var(--secondary-content-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 999px;
+}
+
+
+
+
+@media screen and (max-width: 680px) {
+    .header {
+        position: fixed;
+        border-radius: 5px 5px 0 0;
+        top: auto;
+        bottom: 0;
+    }
+  }
+
+
+
+@media screen and (min-width: 680px)  {
+    .mobile{
+        position: fixed;
+        width: 80px;
+        height: 100vh;
+        right: 0;
+    }
+}

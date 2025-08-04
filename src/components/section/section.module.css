@@ -1,0 +1,13 @@
+.section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
+    padding: 20px;
+    background-color: var(--section-color);
+    height: fit-content;
+    width: fit-content;
+    max-width: 95%;
+    border-radius: 18px;
+
+}

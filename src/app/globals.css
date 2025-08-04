@@ -2,20 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html, body {
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+
+html{
+  /* CORES PRINCIPAIS */
+  --primary-color: rgb(29, 155, 240);
+  --secondary-color: rgb(3, 114, 198);
+  --terciary-color: rgb(186, 224, 253);
+  --darkest-color: rgb(2, 91, 158);
+
+  /* BACKGROUND E SEÇÕES DE CONTEÚDO */
+  --background-color: rgb(255, 255, 255);
+  --section-color: rgb(239, 243, 244);
+
+  /* TEXTOS E ÍCONES */
+  --primary-content-color: rgb(15, 20, 25);
+  --secondary-content-color: rgb(83, 100, 113);
+  
+}
+
+html:has(#darkMode:checked){
+  /* CORES PRINCIPAIS */
+  --primary-color: rgb(29, 155, 240);
+  --secondary-color: rgb(3, 114, 198);
+  --terciary-color: rgb(186, 224, 253);
+  --darkest-color: rgb(2, 91, 158);
+
+  /* BACKGROUND E SEÇÕES DE CONTEÚDO */
+  --background-color: rgb(23, 32, 42);
+  --section-color: rgb(39, 51, 64);
+
+  /* TEXTOS E ÍCONES */
+  --primary-content-color: rgb(247, 249, 249);
+  --secondary-content-color: rgb(139, 152, 165);
+}
+
+html:has(#skeeloTheme:checked){
+  --primary-color: rgb(0, 186, 124);
+  --secondary-color: rgb(0, 164, 110);
+  --terciary-color: rgb(128, 221, 190);
+  --darkest-color: rgb(0, 131, 88);
+}
+
+
+
+
+html{
+  background-color: var(--background-color);
+  color: var(--primary-content-color) !important;
+
+
+
+  .primary-content{
+    color: var(--primary-content-color);
   }
-}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  .secondary-content{
+    color: var(--secondary-content-color);
+  }
+
+  .section-color{
+    background-color: var(--section-color);
+  }
+
+  .border-secondary{
+    border-color: var(--section-color);
+  }
 }
