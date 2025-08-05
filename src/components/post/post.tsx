@@ -3,6 +3,7 @@ import { IPost } from "@/app/interfaces/posts";
 import Link from "next/link";
 import styles from './post.module.css'
 import { useState } from "react";
+import ProgressBar from "../progressBar/progressBar";
 
 interface IProsPost {
     post: IPost;
@@ -11,7 +12,7 @@ interface IProsPost {
 export default function Post({ post }: IProsPost) {
     const postAge = new Date().getTime() - new Date(post.created).getTime();
     const [isPostLiked, setIsPostLiked] = useState(post.liked);
-    const [postLikes, setPostLikes] = useState(post.curtidas);
+    const [postLikes, setPostLikes] = useState(post.curtidas || 0);
 
     const retornaPostAge = (postDate: number) => {
 
@@ -38,6 +39,7 @@ export default function Post({ post }: IProsPost) {
     }
 
     const postsTypesDict = {
+        '26': 'Fez uma resenha',
         '27': 'Fez um histórico de leitura',
     }
 
@@ -47,7 +49,7 @@ export default function Post({ post }: IProsPost) {
             setPostLikes(postLikes + 1)
             fetch(`/api?url=https://www.skoob.com.br/v1/like/add/user/${post.id}/`)
         } catch (err) {
-            
+
         }
     }
 
@@ -83,39 +85,54 @@ export default function Post({ post }: IProsPost) {
 
                         <br />
                         <span className="text-sm">
-                            {postsTypesDict[post.tipo as keyof object]}
+                            {postsTypesDict[String(post.tipo) as keyof object]}
                         </span>
                     </div>
                 </div>
 
-                <p className="my-9">
-                    {post.historico?.texto}
-                </p>
+                <div className="my-9">
+                    {String(post.tipo) === '27' &&
+                        (<>
+                            <p>{post.historico?.texto}</p>
+                            <ProgressBar prop={post.historico} />
+                        </>)
+                    }
+                    {String(post.tipo) === '26' && post?.resenha?.resenha}
+                </div>
 
                 <div className="flex p-5 section-color rounded-3xl justify-between ps-8">
 
                     <div className="mt-2 w-3/4">
-                        <span className="font-semibold">{post.edicao.titulo}</span><br />
-                        <span>{post.edicao.autor}</span>
-                        <span className={`${styles.clip_path_3} secondary-content text-sm mt-6`}>{post.edicao.sinopse}</span>
+                        <span className="font-semibold">{post.edicao?.titulo}</span><br />
+                        <span>{post.edicao?.autor}</span>
+                        <span className={`${styles.clip_path_3} secondary-content text-sm mt-6`}>{post.edicao?.sinopse}</span>
                     </div>
 
                     <div>
-                        <img src={post.edicao.capa_media} alt="" width={100} className="rounded-2xl" />
+                        <img src={post.edicao?.capa_media} alt="" width={100} className="rounded-2xl" />
                     </div>
                 </div>
 
-                <div className="flex m-5 pb-0 text-red-600 font-medium cursor-pointer w-fit">
-                    {
-                        isPostLiked == 0 ?
+                <div className="flex m-5 pb-0 font-medium w-fit transition-colors duration-200 gap-36">
+                    <div className="flex text-red-600 hover:text-red-700 cursor-pointer">
+                        {
+                            isPostLiked == 0 ?
                             (<div onClick={onLike}>
                                 <i className="far fa-heart me-2"></i>Curtir
                             </div>) :
                             (<div onClick={onDislike}>
                                 <i className="fa fa-heart me-2"></i>{postLikes}
                             </div>)
-                    }
+                        }
+                    </div>
+
+                    <div className="flex text-green-600 hover:text-green-700 cursor-pointer">
+                        <div>
+                            <i className="far fa-comment me-2 p-0"></i> Comentar
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </>
     )

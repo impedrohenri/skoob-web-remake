@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 
 interface IAuthProviderProps{
     children: ReactNode
@@ -28,8 +28,12 @@ const AuthContext = createContext<IAuthContext>({
 
 export const AuthProvider: React.FC<IAuthProviderProps> = ({children}) =>{
     const [userCookie, setUserCookie] = useState("");
-    const [userId, setUserId] = useState(localStorage.getItem('user@id')||'');
+    const [userId, setUserId] = useState('');
     const [userData, setUserData] = useState({} as IUsuarioData);
+
+    useEffect(()=>{
+        setUserId(localStorage.getItem('user@id') || '')
+    }, [])
 
     return (
         <AuthContext.Provider value={{ userCookie, setUserCookie, userId, setUserId, userData, setUserData }}>
