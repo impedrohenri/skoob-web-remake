@@ -50,7 +50,7 @@ export default function Post({ post }: IProsPost) {
     try {
       setIsPostLiked(1);
       setPostLikes(postLikes + 1)
-      fetch(`/api?url=https://www.skoob.com.br/v1/like/add/user/${post.id}/`)
+      fetch(`/api?url=/activity/like/add/${post.id}/`)
     } catch (err) {
     }
   }
@@ -59,7 +59,7 @@ export default function Post({ post }: IProsPost) {
     try {
       setIsPostLiked(0);
       setPostLikes(postLikes - 1)
-      fetch(`/api?url=https://www.skoob.com.br/v1/like/delete/user/${post.id}/`)
+      fetch(`/api?url=/activity/like/delete/${post.id}/`)
     } catch (err) {
     }
 

@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import styles from './header.module.css'
 import Link from 'next/link'
 import AuthContext from '@/app/contexts/AuthContext';
+import { getCookie } from '@/app/utils/getCookie';
 
 interface IUserInfo{
   success: boolean;
@@ -17,7 +18,8 @@ interface IUserInfo{
 }
 
 export default function Header(){
-  const { userId, userData } = useContext(AuthContext);
+  const [userId, setUserId] = useState<string|null>('')
+  const [userProfilePic, setUserProfilePic] = useState<string|null>('')
   const [isMobile, setIsMobile] = useState(false)
   const [userInfo, setUserInfo] = useState<IUserInfo|null>(null)
   
@@ -26,18 +28,12 @@ export default function Header(){
   useEffect(()=>{
     if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)){
       setIsMobile(true)
-      
     }
 
-    fetch(`/api?url=https://www.skoob.com.br/v1/user/user_photo_size:mini/`)
-      .then(res => {
-        return res.json();
-      })
-      .then(
-        res => {setUserInfo(res), console.log(res.response.foto)}
-      )
+    setUserId(getCookie('user_id'))
+    setUserProfilePic(getCookie('user_foto'))
     
-  }, [userId])
+  }, [])
 
   return (
     <header className={`${styles.abc}`}>
@@ -46,7 +42,7 @@ export default function Header(){
 
 
 
-        <Link href={`/usuario/${userId}`} className='ms-auto me-5 p-2 bg-black bg-opacity-0 hover:bg-opacity-10 rounded-2xl'> <img src={userInfo?.response.foto} alt="" height={35} width={35} className='rounded-lg'/> </Link>
+        <Link href={`/usuario/${userId}`} className='ms-auto me-5 p-2 bg-black bg-opacity-0 hover:bg-opacity-10 rounded-2xl'> <img src={userProfilePic||"."} alt="" height={35} width={35} className='rounded-lg'/> </Link>
       </div>
     </header>
   )

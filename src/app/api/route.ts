@@ -1,7 +1,12 @@
+import { cookies } from "next/headers";
+import apiRoute from "../utils/apiRoute";
 
 export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const urlParam: string | null = searchParams.get('url');
+
+    const cookieStore = await cookies();
+    const userToken: string | undefined = cookieStore.get('user_token')?.value;
 
     if (!urlParam) {
         return new Response(JSON.stringify({ error: 'URL obrigatória' }), {
@@ -9,11 +14,10 @@ export async function GET(req: Request) {
         });
     }
 
-    const res = await fetch(urlParam, {
+    const res = await fetch(apiRoute + urlParam, {
         method: 'GET',
         headers: {
-            'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMDcyNjMwNSIsImVtYWlsIjoiaW1sdWNlYXRAZ21haWwuY29tIiwiaWF0IjoxNzU0MjI1NjgzLCJleHAiOjE3NTQ4MzA0ODMsImp0aSI6IjVkNTQ0ZWU5Y2JiZWE4OTdmMGU0YWFlMGZhNzI2YzNmIn0.8NuBqR9EMjdRDwS8d0h8lZ51RWUwQA7rWHinwIinB2o',
-            'Cookie': `user_is_logged=0; user_logged=null; _ga=GA1.1.1880355434.1754129794; _clck=19mdkyy%7C2%7Cfy4%7C0%7C2040; __eoi=ID=7e5d72c81b9c6e59:T=1754129795:RT=1754129795:S=AA-AfjbWfZGVYDP43J2c79UIMsxI; cf_clearance=VrMXDNHqvPNtOkVdI7dMIP_a5gGs7HebwUpHYj8bmqc-1754129809-1.2.1.1-ky_7UiekaF3AwW3yGOQTMZKFDrJNAz5Wf9l.CCMhMHDDWibeG2yezFhWa4oPH2zazNAjSYuBtJYYLq_WOmERu_Q3eMeQ6r6wkVDFwUtGdXFi1Oa5jVJDfYQVkc.dtu2gvS7.Hmq4ou7trcu0jh_qPSWadCD5WMNeI3PxNyIBYsKMfzCuOKrnsSIAR9tKzEfvYBsphKWgP1bngMtOVi7CL9e8FIInStvPYCVDL6Y00dY; _ga_KT8Z35D20V=GS2.1.s1754129794$o1$g1$t1754129956$j59$l0$h0; _clsk=1sp015a%7C1754129957482%7C3%7C1%7Ci.clarity.ms%2Fcollect; PHPSESSID=i95o0acqasgad2rqim16ohtsa6; CakeCookie[Skoob]=%7B%22usuario%22%3A%22imluceat%40gmail.com%2310726305%22%7D`
+            'Authorization': `Bearer ${userToken}`
         }
     });
 
@@ -24,6 +28,8 @@ export async function GET(req: Request) {
         headers: { 'content-type': 'application/json' },
     })
 }
+
+
 
 
 export async function POST(req: Request) {

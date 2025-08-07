@@ -1,5 +1,5 @@
-const mainRouter: string = 'https://www.skoob.com.br';
-const apiRouter: string = mainRouter + '/v1';
+const mainRoute: string = 'https://www.skoob.com.br';
+const apiRoute: string = 'https://api.skoob.com.br/api2';
 
-export { mainRouter };
-export default apiRouter;
+export { mainRoute };
+export default apiRoute;

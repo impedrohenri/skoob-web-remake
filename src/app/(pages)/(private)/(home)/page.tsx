@@ -1,10 +1,15 @@
 
+import { getCookieString } from "@/app/utils/getCookieString";
 import HomeClient from "./HomeClient";
 import { cookies } from 'next/headers';
 
 async function myBooks(userId: string | undefined) {
   
-  const res = await fetch(`http://localhost:3000/api?url=https://www.skoob.com.br/v1/bookcase/books/${userId}/shelf_id:0/page:1/limit:200`);
+  const res = await fetch(`http://localhost:3000/api?url=/bookcase/show/?bookcase_type=books&user_id=${userId}`, {
+    headers: {
+      cookie: await getCookieString()
+    }
+  });
 
   const resp = await res.json();
   
@@ -31,10 +36,11 @@ export default async function Home() {
   const cookieStore = await cookies();
   const userId: string | undefined = cookieStore.get('user_id')?.value;
 
-  const url = encodeURIComponent(`https://api.skoob.com.br/api2/feed/general/?type=27&user_id=${userId}&limit=1000`)
+
+  const url = encodeURIComponent(`/feed/general/?type=27&user_id=${userId}&limit=1000`)
   const res = await fetch(`http://localhost:3000/api?url=${url}`, {
     headers: {
-      'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMDcyNjMwNSIsImVtYWlsIjoiaW1sdWNlYXRAZ21haWwuY29tIiwiaWF0IjoxNzU0MjI1NjgzLCJleHAiOjE3NTQ4MzA0ODMsImp0aSI6IjVkNTQ0ZWU5Y2JiZWE4OTdmMGU0YWFlMGZhNzI2YzNmIn0.8NuBqR9EMjdRDwS8d0h8lZ51RWUwQA7rWHinwIinB2o'
+      cookie: await getCookieString()
     }
   });
   const resp = await res.json();

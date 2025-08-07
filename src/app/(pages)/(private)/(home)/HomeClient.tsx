@@ -2,8 +2,6 @@
 
 import Post from "@/components/post/post";
 import { IPost } from "@/app/interfaces/posts";
-import { useContext, useEffect } from "react";
-import AuthContext from "@/app/contexts/AuthContext";
 
 interface Props {
   data: {

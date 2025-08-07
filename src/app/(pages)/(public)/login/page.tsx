@@ -19,35 +19,34 @@ export default function Login() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const formElements = new FormData(event.currentTarget);
-        const userEmail = formElements.get('userEmail') as string;
-        const password = formElements.get('password') as string;
+        const formData = new FormData(event.currentTarget);
+        const data = Object.fromEntries(formData);
 
-        const formData = new URLSearchParams();
-        formData.append('data[Usuario][email]', userEmail);
-        formData.append('data[Usuario][senha]', password);
-        formData.append('data[Login][automatico]', 'true');
+        console.log(data)
 
         try {
             const res = await fetch('/api/login-skoob', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json',
                 },
-                body: formData.toString(),
+                body: JSON.stringify(data)
             });
 
-            const result = await res.json();
+            const resp = await res.json();
 
-            const redirectURL: string = result.redirectTo
+            console.log(resp)
+            
 
-            if (redirectURL.startsWith('https://www.skoob.com.br/usuario/')) {
+            if (resp.status === 'logged') {
                 
-                const id = redirectURL.split('/').at(-1)?.split('-')[0] || ''
+                const id = resp.response.id
                 setUserId(id);
-                localStorage.setItem('user@id', id)
 
                 document.cookie = `user_id=${id}; path=/`
+                document.cookie = `user_token=${resp.response.token}; path=/`
+                document.cookie = `user_refresh_token=${resp.response.refresh_token}; path=/`
+                document.cookie = `user_foto=${resp.response.foto}; path=/`
 
                 router.push('/');
             } else {
@@ -65,7 +64,7 @@ export default function Login() {
                 <div>
                     <form action="" onSubmit={handleSubmit} className={styles.form}>
 
-                        <Input type='text' name='userEmail' placeholder='Nome de usuário ou e-mail' />
+                        <Input type='text' name='email' placeholder='Nome de usuário ou e-mail' />
                         <Input type='password' name='password' placeholder='Senha' />
                         <Button type='submit' value='Avançar' model="model-1" />
                     </form>
