@@ -16,12 +16,6 @@ interface Props {
 
 export default function HomeClient({ data, booksId, booksAuthors, booksEditors }: Props) {
 
-  const { userId } = useContext(AuthContext);
-
-  useEffect(() => {
-    document.cookie = `user_id=${userId}; path=/`
-  }, [])
-
   const feed = data.response
 
   const orderedFeed = [...feed].sort((a, b) => {

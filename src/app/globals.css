@@ -66,11 +66,25 @@ html{
     color: var(--secondary-content-color);
   }
 
+  .background-color{
+    background-color: var(--background-color);
+  }
   .section-color{
     background-color: var(--section-color);
   }
 
   .border-secondary{
     border-color: var(--section-color);
+  }
+
+  .text-primary{
+    color: var(--primary-color);
+  }
+  .text-secondary{
+    color: var(--primary-color);
+  }.text-terciary{
+    color: var(--primary-color);
+  }.text-darkest{
+    color: var(--primary-color);
   }
 }

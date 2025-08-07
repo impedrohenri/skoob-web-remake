@@ -47,13 +47,7 @@ export default function Login() {
                 setUserId(id);
                 localStorage.setItem('user@id', id)
 
-                // fetch(`/api?url=https://www.skoob.com.br/v1/user/${id}`)
-                // .then(res => {
-                //     return res.json()
-                // })
-                // .then(res =>
-                //     {console.log(res.response), setUserData(res.response)}
-                // )
+                document.cookie = `user_id=${id}; path=/`
 
                 router.push('/');
             } else {

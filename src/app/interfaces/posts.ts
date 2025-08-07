@@ -5,6 +5,7 @@ export interface IPost {
     curtidas: number;
     tipo: string;
     created: string;
+    atividade_id: string;
     usuario: {
         id: string;
         foto_grande: string;
