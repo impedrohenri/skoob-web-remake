@@ -13,15 +13,12 @@ export default async function middleware(request: NextRequest){
     const publicRoute = publicRoutes.map(route => {return route.path === path})
     const cookiesss = await cookies()
     const token = cookiesss.get('user_token')
-    console.log('token?', !!token);
-    console.log('Public?', publicRoute[0]);
-    console.log('URL?', request.nextUrl.origin);
 
     if (!!token && publicRoute[0]){
 
         return NextResponse.redirect(request.nextUrl.origin)
     } else if (!token && !publicRoute[0]){
-        
+
         return NextResponse.redirect(request.nextUrl.origin + whenNotAuthenticated )
 
     }

@@ -2,6 +2,12 @@
 import { getCookieString } from "@/app/utils/getCookieString";
 import HomeClient from "./HomeClient";
 import { cookies } from 'next/headers';
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Página principal'
+}
+
 
 async function myBooks(userId: string | undefined) {
   
@@ -22,11 +28,9 @@ async function myBooks(userId: string | undefined) {
     booksAuthors.add(book.edicao?.autor)
     booksEditors.add(book.edicao?.editora)
   })
-
   console.log(booksId)
 
   return {booksId, booksAuthors, booksEditors}
-  
 }
 
 export default async function Home() {

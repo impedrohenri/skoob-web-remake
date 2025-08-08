@@ -4,11 +4,19 @@ import "./globals.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Poppins } from 'next/font/google'
 import { AuthProvider } from "./contexts/AuthContext";
+import { Metadata } from "next";
 
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700']
 })
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | SKOOB',
+    default: 'SKOOB app'
+  }
+}
 
 export default function RootLayout({
   children,
