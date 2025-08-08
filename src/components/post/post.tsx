@@ -14,7 +14,7 @@ interface IProsPost {
 
 export default function Post({ post }: IProsPost) {
   const postAge = new Date().getTime() - new Date(post.created).getTime();
-  const [isPostLiked, setIsPostLiked] = useState(post.liked);
+  const [isPostLiked, setIsPostLiked] = useState(post.liked || 0);
   const [postLikes, setPostLikes] = useState(post.curtidas || 0);
 
   const retornaPostAge = (postDate: number) => {

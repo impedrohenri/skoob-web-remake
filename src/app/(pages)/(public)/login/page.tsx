@@ -22,8 +22,6 @@ export default function Login() {
         const formData = new FormData(event.currentTarget);
         const data = Object.fromEntries(formData);
 
-        console.log(data)
-
         try {
             const res = await fetch('/api/login-skoob', {
                 method: 'POST',
@@ -34,23 +32,24 @@ export default function Login() {
             });
 
             const resp = await res.json();
-
-            console.log(resp)
             
 
             if (resp.status === 'logged') {
+                const tokenExpires = new Date()
+                tokenExpires.setSeconds(tokenExpires.getSeconds() + resp.response.expires_in)
                 
+
                 const id = resp.response.id
                 setUserId(id);
 
-                document.cookie = `user_id=${id}; path=/`
-                document.cookie = `user_token=${resp.response.token}; path=/`
-                document.cookie = `user_refresh_token=${resp.response.refresh_token}; path=/`
-                document.cookie = `user_foto=${resp.response.foto}; path=/`
+                document.cookie = `user_id=${id}; expires=${'Tue, 19 Jan 2038 04:14:06'}; path=/`
+                document.cookie = `user_token=${resp.response.token}; expires=${tokenExpires}; path=/`
+                document.cookie = `user_refresh_token=${resp.response.refresh_token}; expires=${'Tue, 19 Jan 2038 04:14:06'}; path=/`
+                document.cookie = `user_foto=${resp.response.foto}; expires=${'Tue, 19 Jan 2038 04:14:06'}; path=/`
 
                 router.push('/');
             } else {
-                alert('Login falhou ou redirecionamento ausente');
+                alert('Login falhou');
             }
         } catch (err) {
             console.error('Erro ao fazer login:', err);

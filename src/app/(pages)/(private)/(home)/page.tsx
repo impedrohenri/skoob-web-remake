@@ -24,8 +24,6 @@ async function myBooks(userId: string | undefined) {
   })
 
   console.log(booksId)
-  console.log(booksAuthors)
-  console.log(booksEditors)
 
   return {booksId, booksAuthors, booksEditors}
   
@@ -37,10 +35,13 @@ export default async function Home() {
   const userId: string | undefined = cookieStore.get('user_id')?.value;
 
 
-  const url = encodeURIComponent(`/feed/general/?type=27&user_id=${userId}&limit=1000`)
+  const url = encodeURIComponent(`/feed/general/?type=27&user_id=${userId}&limit=100`)
   const res = await fetch(`http://localhost:3000/api?url=${url}`, {
     headers: {
       cookie: await getCookieString()
+    },
+    next:{
+      revalidate: 600
     }
   });
   const resp = await res.json();
