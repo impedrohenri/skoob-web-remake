@@ -52,7 +52,7 @@ export async function POST(req: Request) {
         },
         body: req.body,
         duplex: 'half' ,
-    } as any)
+    } as RequestInit & { duplex: 'half' })
 
     const resp = await res.json()
 

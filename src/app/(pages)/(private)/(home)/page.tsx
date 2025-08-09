@@ -3,6 +3,7 @@ import { getCookieString } from "@/app/utils/getCookieString";
 import HomeClient from "./HomeClient";
 import { cookies } from 'next/headers';
 import { Metadata } from "next";
+import { IBook } from "@/app/interfaces/book";
 
 export const metadata: Metadata = {
   title: 'Página principal'

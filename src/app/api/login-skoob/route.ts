@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     body: JSON.stringify(body),
     redirect: 'manual',
     duplex: 'half'
-  } as any);
+  } as RequestInit & { duplex: 'half' });
 
   const resp = await res.json();
 

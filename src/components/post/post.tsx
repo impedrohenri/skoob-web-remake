@@ -7,6 +7,7 @@ import ProgressBar from "../progressBar/progressBar";
 import Modal from "../modal/modal";
 import TextBox from "../textbox/TextBox";
 import Button from "../button/button";
+import Image from "next/image";
 
 interface IProsPost {
   post: IPost;
@@ -52,6 +53,7 @@ export default function Post({ post }: IProsPost) {
       setPostLikes(postLikes + 1)
       fetch(`/api?url=/activity/like/add/${post.id}/`)
     } catch (err) {
+      throw err;
     }
   }
 
@@ -61,6 +63,7 @@ export default function Post({ post }: IProsPost) {
       setPostLikes(postLikes - 1)
       fetch(`/api?url=/activity/like/delete/${post.id}/`)
     } catch (err) {
+      throw err;
     }
 
   }
@@ -95,7 +98,7 @@ export default function Post({ post }: IProsPost) {
           console.log(res)
         })
     } catch (err) {
-
+      throw err;
     }
   }
 
@@ -107,7 +110,7 @@ export default function Post({ post }: IProsPost) {
 
         <div className="flex gap-5 mb-5">
           <Link href={`/usuario/${post.usuario.id}`}>
-            <img src={post.usuario.foto_grande} alt="alt teste" width={70} className="rounded-full" />
+            <Image src={post.usuario.foto_grande} alt="alt teste" width={70} height={70} className="rounded-full" />
           </Link>
 
           <div className="mt-2">
@@ -145,7 +148,7 @@ export default function Post({ post }: IProsPost) {
           </div>
 
           <div>
-            <img src={post.edicao?.capa_media} alt="" width={100} className="rounded-2xl" />
+            <Image src={post.edicao?.capa_grande} alt="" width={100} height={150} className="rounded-2xl" />
           </div>
         </div>
 
@@ -172,7 +175,7 @@ export default function Post({ post }: IProsPost) {
                   <form onSubmit={onComment} className="flex flex-col w-full">
                     <div className="flex gap-5">
                       <Link href={`/usuario/${post.usuario.id}`}>
-                        <img src={post.usuario.foto_grande} alt="alt teste" width={50} className="rounded-full" />
+                        <Image src={post.usuario.foto_grande} alt="alt teste" width={50} height={50} className="rounded-full" />
                       </Link>
 
                       <div>
@@ -208,7 +211,7 @@ export default function Post({ post }: IProsPost) {
                       </div>
 
                       <div>
-                        <img src={post.edicao?.capa_media} alt="" width={50} className="rounded-2xl" />
+                        <Image src={post.edicao?.capa_media} alt="" width={50} height={75} className="rounded-2xl" />
                       </div>
                     </div>
 

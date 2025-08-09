@@ -1,4 +1,4 @@
-interface IBook{
+export interface IBook{
     edicao: {
         autor: string;
         editora: string;

@@ -1,9 +1,7 @@
-import apiRoute from "@/app/utils/apiRoute";
 import { getCookieString } from "@/app/utils/getCookieString";
 import Button from "@/components/button/button";
 import Section from "@/components/section/Section";
 import { ThemeSelector } from "@/components/themeMode/themeMode";
-import { Metadata } from "next";
 
 import Link from "next/link";
 import { cache } from "react";
@@ -14,7 +12,7 @@ interface InfoParams{
     }>;
 }
 
-export const getUser = cache(async (id: string) => {
+const getUser = cache(async (id: string) => {
     const res = await fetch(`http://localhost:3000/api?url=/user/show/?user_id=${id}`, {
         headers:{
             cookie: await getCookieString(),

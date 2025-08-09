@@ -21,6 +21,7 @@ export interface IPost {
         emoji: string;
     };
     edicao: {
+        capa_grande: string | StaticImport;
         editora: string;
         capa_media: string;
         autor: string;
