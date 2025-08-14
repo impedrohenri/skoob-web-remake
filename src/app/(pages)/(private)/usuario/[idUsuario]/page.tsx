@@ -45,8 +45,8 @@ export default async function Profile({params}: InfoParams){
             {idUsuario}
             <ThemeSelector display="*"/>
             <Section>
-                <Link href='/'><Button value='Home' model=""/></Link>
-                <Link href='/login'><Button value='Sair' model='model-2' className='type-2'/></Link>
+                <Link href='/'><Button>Home</Button></Link>
+                <Link href='/login'><Button variant="secondary">Sair</Button></Link>
             </Section>
 
         </>

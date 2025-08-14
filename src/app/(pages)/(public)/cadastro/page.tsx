@@ -45,7 +45,7 @@ export default function Register(){
                         {/* <Input type='text' name='confirmEmail' placeholder='Confirmal e-mail'  /> */}
                         <Input type='password' name='password' placeholder='Senha'/>
                         <Input type='password' name='confirmPassword' placeholder='Confirmar Senha'/>
-                        <Button type='submit' value='Avançar' model="model-1"/> 
+                        <Button type='submit' value='Avançar'>Avançar</Button> 
                     </form>
                 </div>
             </Section>

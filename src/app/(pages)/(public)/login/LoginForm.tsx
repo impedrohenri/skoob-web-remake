@@ -45,7 +45,7 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit} className={styles.form}>
       <Input type='text' name='email' placeholder='Nome de usuário ou e-mail' />
       <Input type='password' name='password' placeholder='Senha' />
-      <Button type='submit' value='Avançar' model="model-1" />
+      <Button type='submit' value='Avançar'>Avançar</Button> 
     </form>
   );
 }
