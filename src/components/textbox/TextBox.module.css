@@ -1,6 +1,6 @@
 .textbox{
     padding: 8px;
-    border-radius: 10px;
+    padding-left: 16px;
     border: 2px solid var(--terciary-color);
     width: 300px;
     background-color: var(--background-color);

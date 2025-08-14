@@ -1,5 +1,3 @@
-'use client';
-
 import Post from "@/components/post/post";
 import { IPost } from "@/app/interfaces/posts";
 

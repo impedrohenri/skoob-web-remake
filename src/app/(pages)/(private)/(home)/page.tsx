@@ -40,7 +40,7 @@ export default async function Home() {
   const userId: string | undefined = cookieStore.get('user_id')?.value;
 
 
-  const url = encodeURIComponent(`/feed/general/?type=27&user_id=${userId}&limit=100`)
+  const url = encodeURIComponent(`/feed/general/?user_id=${userId}&limit=100`)
   const res = await fetch(`http://localhost:3000/api?url=${url}`, {
     headers: {
       cookie: await getCookieString()

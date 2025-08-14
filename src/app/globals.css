@@ -55,7 +55,8 @@ html:has(#skeeloTheme:checked){
 html{
   background-color: var(--background-color);
   color: var(--primary-content-color) !important;
-
+  scrollbar-color: var(--secondary-content-color) var(--section-color);
+  
 
 
   .primary-content{
@@ -81,10 +82,16 @@ html{
     color: var(--primary-color);
   }
   .text-secondary{
-    color: var(--primary-color);
-  }.text-terciary{
-    color: var(--primary-color);
-  }.text-darkest{
-    color: var(--primary-color);
+    color: var(--secondary-color);
+  }
+  .text-terciary{
+    color: var(--terciary-color);
+  }
+  .text-darkest{
+    color: var(--darkest-color);
+  }
+
+  .hover\:text-primary:hover{
+    color: var(--darkest-color);
   }
 }

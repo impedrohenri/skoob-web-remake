@@ -7,6 +7,6 @@ interface IProps{
 export default function TextBox({...props}: IProps){
 
     return (
-        <textarea {...props} className={`${styles.textbox} ${props.className}`} ></textarea>
+        <textarea {...props} className={`${styles.textbox} ${props.className} rounded-2xl`} ></textarea>
     )
 }
