@@ -1,4 +1,5 @@
 export interface IPost {
+    
     livro_id: string;
     id: string;
     liked: number;
@@ -13,6 +14,8 @@ export interface IPost {
 
     };
     historico: {
+        emoji_url: string;
+        emoji_unicode: string;
         texto: string;
         spoiler: number;
         paginas: number;
@@ -21,7 +24,7 @@ export interface IPost {
         emoji: string;
     };
     edicao: {
-        capa_grande: string | StaticImport;
+        capa_grande: string;
         editora: string;
         capa_media: string;
         autor: string;
@@ -32,6 +35,7 @@ export interface IPost {
         spoiler: string;
     };
     resenha: {
+        spoiler: boolean;
         resenha: string;
     };
 }

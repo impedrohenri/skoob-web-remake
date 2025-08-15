@@ -36,7 +36,7 @@ export default function HomeClient({ data, booksId, booksAuthors, booksEditors }
         <div className="w-4/4 md:w-3/4 lg:w-2/4 border-secondary border-2 h-full mx-auto">
           {
             orderedFeed.map((post: IPost, key: number) => (
-               ['26', '27'].includes(String(post.tipo)) && <Post key={key} post={post} />
+               ['27', '26'].includes(String(post.tipo)) && <Post key={key} post={post} />
             ))
           }
         </div>

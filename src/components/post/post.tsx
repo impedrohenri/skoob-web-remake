@@ -106,7 +106,7 @@ export default function Post({ post }: IProsPost) {
 
                     <TextBox name="Comentario" id="comentario" className='min-w-[100%] my-5 ' placeholder='Faça um comentário' />
 
-                    <Button value='Postar' model='model-1' />
+                    <Button>Postar</Button>
                   </form>
                 </div>
               </Modal>

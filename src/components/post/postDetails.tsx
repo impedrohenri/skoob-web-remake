@@ -5,12 +5,14 @@ import Link from "next/link";
 import ProgressBar from "../progressBar/progressBar";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import Button from "../button/button";
 
 interface IProps {
   post: IPost;
 }
 
 export default function PostDetails({ post }: IProps) {
+  const [isSpoiler, setIsSpoiler] = useState(post.resenha?.spoiler||false);
   const [isClamped, setIsClamped] = useState(true);
   const [showButton, setShowButton] = useState(false);
   const textRef = useRef<HTMLDivElement>(null);
@@ -19,6 +21,7 @@ export default function PostDetails({ post }: IProps) {
   useEffect(() => {
     const diff = Date.now() - new Date(post.created).getTime();
     setPostAge(retornaPostAge(diff));
+    
   }, [post.created]);
 
 
@@ -95,11 +98,16 @@ export default function PostDetails({ post }: IProps) {
       </div>
 
       <div className={`my-8 mt-[1%] text-[0.95rem]`}>
+
+        { isSpoiler ? (
+          <div className="flex justify-center align-middle py-10 rounded-2xl border-2 border-solid border-gray-400">
+            <Button variant="primary" onClick={() => {setIsSpoiler(false)}}>Alerta de spoiler!</Button>
+          </div>
+          ) : 
         <div ref={textRef} className={isClamped ? 'line-clamp-4' : ''}>
-          {String(post.tipo) === "27"
-            ? post.historico?.texto
-            : post.resenha?.resenha}
-        </div>
+          {post?.resenha?.resenha}
+          {post?.historico?.texto}
+        </div>}
 
 
         {showButton &&
@@ -116,7 +124,10 @@ export default function PostDetails({ post }: IProps) {
 
         {
           String(post.tipo) === '27' &&
-          <ProgressBar prop={post.historico} />
+          <div className="flex w-full align-middle gap-2 pt-3">
+            {!!post.historico.emoji_url && <Image src={post.historico.emoji_url || "/"} width={100} height={1} alt="" className="w-10 h-10"/>}
+            <ProgressBar prop={post.historico} />
+          </div>
         }
       </div>
 

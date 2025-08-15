@@ -10,7 +10,7 @@ export default function ProgressBar({prop}: IHistProps){
 
     return (
         <>
-            <div className="mt-8 secondary-content text-sm font-semibold flex flex-wrap justify-between">
+            <div className="mt-[14px] secondary-content text-sm font-semibold flex flex-wrap justify-between w-full">
                 <span></span>
                 <span></span>
 
