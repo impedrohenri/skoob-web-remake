@@ -85,7 +85,7 @@ export default function Post({ post }: IProsPost) {
             {
               isPostLiked == 0 ?
                 (<div onClick={onLike}>
-                  <i className="far fa-heart me-2"></i>Curtir
+                  <i className="far fa-heart me-2 [-webkit-text-stroke:0.5px_currentColor]"></i>Curtir
                 </div>) :
                 (<div onClick={onDislike}>
                   <i className="fa fa-heart me-2"></i>{postLikes}
@@ -97,7 +97,7 @@ export default function Post({ post }: IProsPost) {
           <div className="flex text-primary hover:text-primary cursor-pointer">
             <div>
               <Modal activateButton={
-                <><i className="far fa-comment me-2 p-0"></i> Comentar</>
+                <><i className="far fa-comment text-strokr me-2 p-0 [-webkit-text-stroke:0.5px_currentColor]"></i> Comentar</>
               }>
                 <div>
                   <form onSubmit={onComment} className="flex flex-col w-full">

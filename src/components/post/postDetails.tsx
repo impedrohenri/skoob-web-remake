@@ -6,6 +6,7 @@ import ProgressBar from "../progressBar/progressBar";
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Button from "../button/button";
+import BookRate from "../bookRate/bookRate";
 
 interface IProps {
   post: IPost;
@@ -94,6 +95,8 @@ export default function PostDetails({ post }: IProps) {
           <span className="text-sm">
             {postsTypesDict[String(post.tipo) as keyof object]}
           </span>
+
+          <BookRate rating={post.meu_livro.ranking}/>
         </div>
       </div>
 
@@ -105,6 +108,7 @@ export default function PostDetails({ post }: IProps) {
           </div>
           ) : 
         <div ref={textRef} className={isClamped ? 'line-clamp-4' : ''}>
+          <p className="font-semibold mb-2.5">{post?.resenha?.titulo_resenha}</p>
           {post?.resenha?.resenha}
           {post?.historico?.texto}
         </div>}

@@ -33,8 +33,10 @@ export interface IPost {
     }
     meu_livro: {
         spoiler: string;
+        ranking: number;
     };
     resenha: {
+        titulo_resenha: string;
         spoiler: boolean;
         resenha: string;
     };
