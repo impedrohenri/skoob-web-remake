@@ -2,7 +2,7 @@
     padding: 8px;
     border-radius: 10px;
     border: 2px solid var(--terciary-color);
-    width: 300px;
+    width: 100%;
     background-color: var(--background-color);
 }
 

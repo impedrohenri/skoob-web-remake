@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 import Section from "@/components/section/Section";
-import Link from 'next/link';
-import LoginForm from './LoginForm';
-import styles from './login.module.css';
+import LoginForm from './_components/LoginForm';
+import LogoSideLayer from './_components/logoSideLayer/logoSideLayer';
 
 export const metadata: Metadata = {
   title: 'Login'
@@ -11,13 +10,21 @@ export const metadata: Metadata = {
 export default function LoginPage() {
   return (
     <>
-      <Section>
-        <div className={styles.form}>
-          <LoginForm />
+      <div className='flex flex-wrap h-[100vh]'>
+        <LogoSideLayer />
+
+        <div className='flex items-center justify-center h-full w-full md:w-7/12'>
+          <Section className='w-[350px]'>
+            
+              <LoginForm />
+              
+            
+           
+          </Section>
+          
+          
         </div>
-      </Section>
-      <Link href='/cadastro'>Cadastre-se</Link>
-      <div>exB69.kaY6SH*@V</div>
+      </div>
     </>
   );
 }

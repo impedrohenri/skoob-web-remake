@@ -3,7 +3,6 @@
 import { useRouter } from 'next/navigation';
 import Button from "@/components/button/button";
 import Input from "@/components/input/input";
-import styles from './login.module.css';
 
 export default function LoginForm() {
   const router = useRouter();
@@ -42,10 +41,11 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <Input type='text' name='email' placeholder='Nome de usuário ou e-mail' />
+    <form onSubmit={handleSubmit} className='flex flex-col gap-5 w-full'>
+      <Input type='text' name='email' placeholder='Nome de usuário ou e-mail'/>
       <Input type='password' name='password' placeholder='Senha' />
-      <Button type='submit' value='Avançar'>Avançar</Button> 
+      <Button type='submit' value='Avançar'>Entrar</Button>
+      <span>exB69.kaY6SH*@V</span>
     </form>
   );
 }

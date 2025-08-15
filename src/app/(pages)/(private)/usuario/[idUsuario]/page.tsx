@@ -5,16 +5,17 @@ import { ThemeSelector } from "@/components/themeMode/themeMode";
 
 import Link from "next/link";
 import { cache } from "react";
+import LogoutButton from "./_components/LogoutButton";
 
-interface InfoParams{
-    params:Promise<{
+interface InfoParams {
+    params: Promise<{
         idUsuario: string;
     }>;
 }
 
 const getUser = cache(async (id: string) => {
     const res = await fetch(`http://localhost:3000/api?url=/user/show/?user_id=${id}`, {
-        headers:{
+        headers: {
             cookie: await getCookieString(),
         }
     })
@@ -23,30 +24,30 @@ const getUser = cache(async (id: string) => {
     return resp.response;
 });
 
-export async function generateMetadata({params}:InfoParams) {
-    const {idUsuario} = await params;
+export async function generateMetadata({ params }: InfoParams) {
+    const { idUsuario } = await params;
     const res = await getUser(idUsuario)
-    
+
     return {
         title: `${res.nome} - Perfil`
     }
 
 }
 
-export default async function Profile({params}: InfoParams){
-    const {idUsuario} = await params;
+export default async function Profile({ params }: InfoParams) {
+    const { idUsuario } = await params;
 
     const user = await getUser(idUsuario);
 
-    return(
+    return (
         <>
             <p className="primary-content"><strong className="secondary-content">PROFILE</strong> page of <strong className="secondary-content">{user.nome}</strong></p>
             <br />
             {idUsuario}
-            <ThemeSelector display="*"/>
+            <ThemeSelector display="*" />
             <Section>
                 <Link href='/'><Button>Home</Button></Link>
-                <Link href='/login'><Button variant="secondary">Sair</Button></Link>
+                <LogoutButton></LogoutButton>
             </Section>
 
         </>

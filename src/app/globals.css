@@ -67,6 +67,7 @@ html{
     color: var(--secondary-content-color);
   }
 
+  
   .background-color{
     background-color: var(--background-color);
   }
@@ -74,9 +75,11 @@ html{
     background-color: var(--section-color);
   }
 
+
   .border-secondary{
     border-color: var(--section-color);
   }
+
 
   .text-primary{
     color: var(--primary-color);
