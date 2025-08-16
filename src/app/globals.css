@@ -94,7 +94,7 @@ html{
     color: var(--darkest-color);
   }
 
-  .hover\:text-primary:hover{
+  .hover\:text-darkest:hover{
     color: var(--darkest-color);
   }
 }

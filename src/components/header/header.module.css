@@ -29,7 +29,7 @@
 
 
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 768px) {
     .header {
         position: fixed;
         border-radius: 5px 5px 0 0;
@@ -40,7 +40,7 @@
 
 
 
-@media screen and (min-width: 680px)  {
+@media screen and (min-width: 768px)  {
     .mobile{
         position: fixed;
         width: 80px;

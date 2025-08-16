@@ -25,7 +25,7 @@ async function myBooks(userId: string | undefined) {
   const booksEditors: Set<string> = new Set();
 
   resp.response.map((book: IBook) => {
-    booksId.add(book?.livro_id)
+    booksId.add(String(book?.livro_id))
     booksAuthors.add(book.edicao?.autor)
     booksEditors.add(book.edicao?.editora)
   })
@@ -40,7 +40,7 @@ export default async function Home() {
   const userId: string | undefined = cookieStore.get('user_id')?.value;
 
 
-  const url = encodeURIComponent(`/feed/general/?user_id=${userId}&limit=1000`)
+  const url = encodeURIComponent(`/feed/general/?user_id=${userId}&limit=100`)
   const res = await fetch(`http://localhost:3000/api?url=${url}`, {
     headers: {
       cookie: await getCookieString()
