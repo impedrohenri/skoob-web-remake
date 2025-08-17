@@ -1,11 +1,15 @@
 import { getCookieString } from "@/app/utils/getCookieString";
-import Button from "@/components/button/button";
-import Section from "@/components/section/Section";
-import { ThemeSelector } from "@/components/themeMode/themeMode";
+
+import { cache } from "react";
+import FirstSection from "./_components/FirstSection";
+import SecondSection from "./_components/SecondSection";
+
 
 import Link from "next/link";
-import { cache } from "react";
+import Button from "@/components/button/button";
+import { ThemeSelector } from "@/components/themeMode/themeMode";
 import LogoutButton from "./_components/LogoutButton";
+import Section from "@/components/section/Section";
 
 interface InfoParams {
     params: Promise<{
@@ -41,14 +45,24 @@ export default async function Profile({ params }: InfoParams) {
 
     return (
         <>
-            <p className="primary-content"><strong className="secondary-content">PROFILE</strong> page of <strong className="secondary-content">{user.nome}</strong></p>
-            <br />
-            {idUsuario}
-            <ThemeSelector display="*" />
-            <Section>
-                <Link href='/'><Button>Home</Button></Link>
-                <LogoutButton></LogoutButton>
-            </Section>
+            <div className="flex flex-wrap">
+                <div className="flex flex-col max-h-fit items-center w-[100vw] md:w-[35%] lg:w-[30%]  gap-5 pt-10 px-1 md:p-8">
+                    <FirstSection user={user} />
+                </div>
+
+                <div className="max-w-full md:w-[65%] lg:w-[45%] border-secondary border-x-2 h-full mx-auto gap-5 pt-10 px-1 sm:px-4">
+                    <SecondSection user={user} />
+                </div>
+
+                <div className="hidden lg:block w-[25%]">
+                    <ThemeSelector display="*" />
+                    <Section>
+                        <Link href='/'><Button>Home</Button></Link>
+                        <LogoutButton></LogoutButton>
+                    </Section>
+                </div>
+            </div>
+
 
         </>
     )
