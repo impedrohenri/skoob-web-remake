@@ -94,7 +94,7 @@ export default function Post({ post }: IProsPost) {
           </div>
 
           {/* Opção de comentar */}
-          <div className="flex text-primary hover:text-primary cursor-pointer">
+          <div className="flex text-primary hover:text-darkest cursor-pointer">
             <div>
               <Modal activateButton={
                 <><i className="far fa-comment text-strokr me-2 p-0 [-webkit-text-stroke:0.5px_currentColor]"></i> Comentar</>
