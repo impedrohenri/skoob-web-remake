@@ -29,8 +29,10 @@ export default function Header(){
         <Link href={'/'} className=' bg-black bg-opacity-0 hover:bg-opacity-5 rounded-2xl'> <Image src="/assets/skoob_img/skoob_sem_fundo.png" alt="logo texto" height={50} width={140}/> </Link>
 
 
+        <Link href={`/`} className='ms-auto me-5 p-2 px-4 bg-black bg-opacity-0 hover:bg-opacity-10 rounded-2xl'>Home</Link>
 
-        <Link href={`/usuario/${userId}`} className='ms-auto me-5 p-2 bg-black bg-opacity-0 hover:bg-opacity-10 rounded-2xl'> <Image src={userProfilePic||"/"} alt="" height={35} width={35} className='rounded-lg'/> </Link>
+        <Link href={`/usuario/${userId}`} className='me-5 p-2 bg-black bg-opacity-0 hover:bg-opacity-10 rounded-2xl'> <div className='flex align-middle items-center gap-2
+        '><Image src={userProfilePic||"/"} alt="" height={35} width={35} className='rounded-lg'/> Perfil</div> </Link>
       </div>
     </header>
   )
