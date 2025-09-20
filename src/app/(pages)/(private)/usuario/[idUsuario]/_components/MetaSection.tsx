@@ -66,7 +66,7 @@ export default function MetaSection({ user }: IProp) {
                 <div className="flex justify-between w-full">
                     <Link href={'/meta'} className="me-auto text-sm text-primary hover:text-darkest font-semibold">Meta de Leitura 2025</Link>
 
-                    <span className="secondary-content font-semibold text-sm">{userMetaStatus.lido} de {userMetaStatus.total}</span>
+                    <span className="secondary-content font-semibold text-sm">{userMetaStatus.lido || 0} de {userMetaStatus.total || 0}</span>
                 </div>
 
                 <div className="flex justify-between gap-2.5 sm:gap-[1.8%] overflow-x-auto overflow-y-visible sm:overflow-visible max-w-full pb-5" >
@@ -86,7 +86,7 @@ export default function MetaSection({ user }: IProp) {
                             : userMetaStatus?.percentual_lido < 66
                                 ? "bg-yellow-400"
                                 : "bg-green-600"
-                            } rounded-full`} style={{ width: `${userMetaStatus.percentual_lido}%` }}>
+                            } rounded-full`} style={{ width: `${userMetaStatus.percentual_lido || 0}%` }}>
 
                         </div>
                     </div>
@@ -100,12 +100,12 @@ export default function MetaSection({ user }: IProp) {
                             }`}
                         >
                             <i className="fa fa-tachometer me-1.5"></i>
-                            {userMetaStatus.direcao === "up" ? userMetaStatus.delay : -userMetaStatus.delay}
+                            {userMetaStatus.direcao === "up" ? userMetaStatus.delay : -userMetaStatus.delay || 0}
                         </span>
 
 
-                        <span className="flex text-sm secondary-content mt-2">{userMetaStatus.paginas_lidas} de {userMetaStatus.paginas_total}
-                            <span className="ms-1 hidden sm:flex"> páginas (ritmo: {userMetaStatus.velocidade_dia} por dia)</span>
+                        <span className="flex text-sm secondary-content mt-2">{userMetaStatus.paginas_lidas || 0} de {userMetaStatus.paginas_total || 0}
+                            <span className="ms-1 hidden sm:flex"> páginas (ritmo: {userMetaStatus.velocidade_dia || 0} por dia)</span>
                         </span>
                     </div>
                 </div>
