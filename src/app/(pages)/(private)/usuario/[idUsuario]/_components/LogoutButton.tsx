@@ -11,5 +11,5 @@ export default function LogoutButton() {
     router.replace("/login");
   }
 
-  return <Button variant="secondary" onClick={handleLogout}>Sair</Button>;
+  return <Button variant="secondary" onClick={handleLogout}>Sair <i className="fa fa-arrow-right"></i></Button>;
 }

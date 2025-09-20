@@ -5,11 +5,11 @@ import FirstSection from "./_components/FirstSection";
 import SecondSection from "./_components/SecondSection";
 
 
-import Link from "next/link";
-import Button from "@/components/button/button";
+
 import { ThemeSelector } from "@/components/themeMode/themeMode";
 import LogoutButton from "./_components/LogoutButton";
 import Section from "@/components/section/Section";
+import { cookies } from "next/headers";
 
 interface InfoParams {
     params: Promise<{
@@ -42,6 +42,7 @@ export default async function Profile({ params }: InfoParams) {
     const { idUsuario } = await params;
 
     const user = await getUser(idUsuario);
+    const myUserId = (await cookies()).get("user_id")?.value;
 
     return (
         <>
@@ -54,12 +55,17 @@ export default async function Profile({ params }: InfoParams) {
                     <SecondSection user={user} />
                 </div>
 
-                <div className="hidden lg:block w-[25%]">
-                    <ThemeSelector display="*" />
-                    <Section>
-                        <Link href='/'><Button>Home</Button></Link>
-                        <LogoutButton></LogoutButton>
-                    </Section>
+                <div className="hidden lg:block w-[25%] px-4">
+
+                    { Number(idUsuario) === Number(myUserId) &&
+                        <>
+                            <ThemeSelector display="*" />
+                            <Section className="mt-4">
+                                
+                                <LogoutButton></LogoutButton>
+                            </Section>
+                        </>
+                    }
                 </div>
             </div>
 

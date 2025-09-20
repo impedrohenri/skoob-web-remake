@@ -53,13 +53,25 @@ export default function ThemeMode(props: props) {
 export function ThemeSelector({ display }: props) {
     return (
         <>
-            <Section>
-                <div className={`${display} ${styles.themeSection} `}>
-                    <label htmlFor="lightMode">turn light</label>
-                    <label htmlFor="darkMode">turn dark</label>
+            <Section className='px-2 mt-10'>
+                <div className={`${display} ${styles.themeSection} text-sm`}>
+                    <label htmlFor="lightMode">
+                        <i className='fa fa-sun me-2'></i> 
+                        Claro
+                    </label>
+                    <label htmlFor="darkMode">
+                        <i className='fa fa-moon me-2'></i> 
+                        Escuro
+                    </label>
 
-                    <label htmlFor="skoobTheme">turn blue</label>
-                    <label htmlFor="skeeloTheme">turn green</label>
+                    <label htmlFor="skoobTheme">
+                        <i className='fa fa-book me-2'></i> 
+                        Skoob
+                    </label>
+                    <label htmlFor="skeeloTheme">
+                        <i className='fa fa-leaf me-2'></i> 
+                        Skeelo
+                    </label>
                 </div>
             </Section>
         </>
